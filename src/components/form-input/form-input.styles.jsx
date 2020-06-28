@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom'
 
 export const GroupContainer = styled.div`
   position: relative;
@@ -24,6 +25,14 @@ export const FormInputContainer = styled.input`
     border: 1px solid #61dafb;
   }
 
+  &[disabled]{
+    background-color: rgba(0,0,0,0.1);
+  }
+
+  &[disabled]:hover{
+    border: 1px solid grey;
+  }
+
 `;
 
 FormInputContainer.displayName = 'FormInputContainer';
@@ -38,7 +47,7 @@ export const FormInputLabel = styled.label`
 
 FormInputLabel.displayName = 'FormInputLabel';
 
-export const LinkTag = styled.a`
+export const LinkTag = styled(Link)`
   font-size: 12px;;
   font-weight: 600;
   color: #0366d6;

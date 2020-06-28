@@ -2,8 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 	body {
-		margin-top: 110px !important;
-		margin-bottom: 150px !important;
+		margin-top: 60px !important;
+		margin-bottom: 80px !important;
 		overflow-x: hidden;
 	}
 

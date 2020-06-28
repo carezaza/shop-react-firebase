@@ -4,7 +4,7 @@ import { CustomButton } from './button.styles'
 
 function Button({ children , ...props}) {
     return (
-    <CustomButton {...props}>{ children }</CustomButton>
+    <CustomButton {...props} >{ children }</CustomButton>
     )
 }
 

@@ -1,31 +1,97 @@
-import React , {Fragment} from "react";
-import { Switch, Route } from 'react-router-dom';
+import React, { Fragment, useEffect, lazy, Suspense } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
-//import components
-import Header from './components/header/header.component';
-import HomePage from './pages/homepage/homepage.component';
-import SignIn from './pages/sign-in/sign-in.component';
-import SignUp from './pages/sign-up/sign-up.component';
-import Footer from './components/footer/footer.component';
-
-//import styles
+import {
+  selectCurrentUser,
+  selectIsChecking,
+} from "./redux/user/user.selectors";
 import { GlobalStyle } from "./global.styles";
+import { checkUserSessionStart } from "./redux/user/user.actions";
+import { fetchCollectionsStart } from "./redux/collections/collections.actions";
 
-import { notAllowRender } from './utils/render'
+import Header from "./components/header/header.component";
+import Spinner from "./components/spinner/spinner.component";
+import ErrorBoundary from "./components/error-boundary/error-boundary.component";
+const HomePage = lazy(() => import("./pages/homepage/homepage.component"));
+const SignInPage = lazy(() => import("./pages/sign-in/sign-in.component"));
+const SignUpPage = lazy(() => import("./pages/sign-up/sign-up.component"));
+const ResetPasswordPage = lazy(() =>
+  import("./pages/resetpassword/resetpassword.component")
+);
+const AddProduct = lazy(() =>
+  import("./admin/pages/add-product/add-product.component")
+);
 
-function App() {
-  return (
+const App = ({
+  fetchCollectionsStart,
+  checkUserSessionStart,
+  currentUser,
+  isCheckingSession,
+}) => {
+  useEffect(() => {
+    fetchCollectionsStart();
+    checkUserSessionStart();
+  }, [fetchCollectionsStart, checkUserSessionStart]);
+
+  const user = currentUser ? currentUser : null;
+
+  return isCheckingSession ? (
+    <Spinner />
+  ) : (
     <Fragment>
       <GlobalStyle />
-      {notAllowRender() ? null : <Header />}
+      <Header />
       <Switch>
-            <Route exact path='/' component={HomePage} />
-            <Route exact path='/signin' component={SignIn} />
-            <Route exact path='/signup' component={SignUp} />
+        <ErrorBoundary>
+          <Suspense fallback={<Spinner />}>
+            <Route exact path="/" component={HomePage} />
+            <Route
+              exact
+              path="/signin"
+              render={() =>
+                currentUser ? <Redirect to="/" /> : <SignInPage />
+              }
+            />
+            <Route
+              exact
+              path="/signup"
+              render={() =>
+                currentUser ? <Redirect to="/" /> : <SignUpPage />
+              }
+            />
+            <Route
+              path="/password_reset"
+              render={() =>
+                currentUser ? <Redirect to="/" /> : <ResetPasswordPage />
+              }
+            />
+
+            {adminRoutes(user)}
+          </Suspense>
+        </ErrorBoundary>
       </Switch>
-      {notAllowRender() ? null : <Footer />}
     </Fragment>
   );
-}
+};
 
-export default App;
+const adminRoutes = (user) => {
+  if (!user) return;
+  const { role } = user;
+  return role === "admin" ? (
+    <Route exact path="/admin/add_product" component={AddProduct} />
+  ) : null;
+};
+
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  isCheckingSession: selectIsChecking,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  checkUserSessionStart: () => dispatch(checkUserSessionStart()),
+  fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

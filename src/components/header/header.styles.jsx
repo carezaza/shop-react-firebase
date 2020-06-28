@@ -1,18 +1,24 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 const dark = "#20232a";
 const blueLight = "#61dafb";
 
+const transitionStyle = css`
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
+`;
+
 export const HeaderContainer = styled.div`
   position: fixed;
-  height: 110px;
-  max-height: 110px;
+  height: 60px;
+  max-height: 60px;
   width: 100%;
   top: 0;
   left: 0;
-  display: flex;
-  justify-content: center;
   background-color: ${dark};
   z-index: 1;
   padding: 10px;
@@ -24,36 +30,27 @@ export const HeaderContainer = styled.div`
 
 export const NavbarContainer = styled.div`
   height: 100%;
-  width: 90%;
+  width: 80%;
+  margin: auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   @media screen and (max-width: 800px) {
     width: 100%;
   }
 `;
 
-export const NavbarHeader = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-export const NavbarContent = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
 export const LogoContainer = styled(Link)`
-  height: 48px;
-  width: 80px;
-  padding: 20px;
+  height: 100%;
+  width: 40px;
+  padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: ${blueLight};
 
   @media screen and (max-width: 800px) {
-    width: 50px;
-    padding: 0 10px;
+    width: 28px;
+    padding: 0;
   }
 `;
 
@@ -66,8 +63,8 @@ export const UserContainer = styled.div`
   justify-content: flex-end;
 
   @media screen and (max-width: 800px) {
-    width: 90%;
-    padding: 0 10px;
+    width: auto;
+    padding: 0;
   }
 `;
 
@@ -75,30 +72,39 @@ export const MenusContainer = styled.div`
   width: 40%;
   height: 100%;
   display: flex;
+  margin: 0 20px;
   align-items: center;
-  justify-content: center;
 
   @media screen and (max-width: 800px) {
-    width: 90%;
-    padding: 0 10px;
+    width: auto;
+    margin: 0 10px;
   }
 `;
 
 export const MenusLink = styled(Link)`
-  padding: 10px 15px;
+  ${transitionStyle}
+  padding: 10px;
   cursor: pointer;
   color: #ffffff;
 
   &:hover {
     color: #61dafb;
   }
+
+  @media screen and (max-width: 800px) {
+    width: auto;
+    padding: 5px 10px;
+  }
 `;
 
-export const LinkTag = styled.a`
+export const ButtonOptions = styled.button`
+  ${transitionStyle}
+  border: 1px solid #61dafb;
+  border-radius: 5px;
+  padding: 10px;
   cursor: pointer;
   color: #ffffff;
-  text-decoration: none;
-
+  background: transparent;
   &:hover {
     color: #61dafb;
   }

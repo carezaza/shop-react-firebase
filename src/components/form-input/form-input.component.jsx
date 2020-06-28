@@ -8,12 +8,13 @@ import {
 } from "./form-input.styles";
 
 const FormInput = ({ handleChange, label, addForgotPassword , ...props }) => {
+
   return (
     <GroupContainer>
       {label ? (
-        <FormInputLabel className={props.value.length ? "shrink" : ""} >
+        <FormInputLabel >
           {label.charAt(0).toUpperCase() + label.slice(1)}
-          {addForgotPassword ? <LinkTag>Forgot password ?</LinkTag> : null}
+          {addForgotPassword ? <LinkTag to='/password_reset'>Forgot password ?</LinkTag> : null}
         </FormInputLabel>
       ) : null}
       <FormInputContainer onChange={handleChange} {...props} />
