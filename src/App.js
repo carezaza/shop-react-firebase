@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
+
 import {
   selectCurrentUser,
   selectIsChecking,
@@ -20,9 +21,9 @@ const SignUpPage = lazy(() => import("./pages/sign-up/sign-up.component"));
 const ResetPasswordPage = lazy(() =>
   import("./pages/resetpassword/resetpassword.component")
 );
-const AddProduct = lazy(() =>
-  import("./admin/pages/add-product/add-product.component")
-);
+const ShopPage = lazy(() => import("./pages/shoppage/shoppage.component"));
+const CreateProduct = lazy(() => import("./pages/create-product/create-product.component"));
+
 
 const App = ({
   fetchCollectionsStart,
@@ -34,8 +35,6 @@ const App = ({
     fetchCollectionsStart();
     checkUserSessionStart();
   }, [fetchCollectionsStart, checkUserSessionStart]);
-
-  const user = currentUser ? currentUser : null;
 
   return isCheckingSession ? (
     <Spinner />
@@ -67,8 +66,8 @@ const App = ({
                 currentUser ? <Redirect to="/" /> : <ResetPasswordPage />
               }
             />
-
-            {adminRoutes(user)}
+            <Route exact path="/shop" component={ShopPage} />
+            <Route exact path="/add" component={CreateProduct} />
           </Suspense>
         </ErrorBoundary>
       </Switch>
@@ -76,13 +75,6 @@ const App = ({
   );
 };
 
-const adminRoutes = (user) => {
-  if (!user) return;
-  const { role } = user;
-  return role === "admin" ? (
-    <Route exact path="/admin/add_product" component={AddProduct} />
-  ) : null;
-};
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,

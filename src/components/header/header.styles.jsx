@@ -1,8 +1,6 @@
 import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
-
-const dark = "#20232a";
-const blueLight = "#61dafb";
+import { NavLink } from "react-router-dom";
+import { ReactComponent as Logo } from "../../assets/brands/brandsSVG.svg";
 
 const transitionStyle = css`
   -webkit-transition: all 1s ease;
@@ -19,7 +17,7 @@ export const HeaderContainer = styled.div`
   width: 100%;
   top: 0;
   left: 0;
-  background-color: ${dark};
+  background-color: var(--dark-color);
   z-index: 1;
   padding: 10px;
 
@@ -39,19 +37,24 @@ export const NavbarContainer = styled.div`
   }
 `;
 
-export const LogoContainer = styled(Link)`
+export const LogoContainer = styled(NavLink)`
   height: 100%;
   width: 40px;
   padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${blueLight};
+  color: var(--blueLight-color);
 
   @media screen and (max-width: 800px) {
     width: 28px;
     padding: 0;
   }
+`;
+
+export const LogoSvg = styled(Logo)`
+  max-width: 30px;
+  max-height: 30px;
 `;
 
 export const UserContainer = styled.div`
@@ -81,14 +84,19 @@ export const MenusContainer = styled.div`
   }
 `;
 
-export const MenusLink = styled(Link)`
+export const MenusLink = styled(NavLink)`
   ${transitionStyle}
   padding: 10px;
   cursor: pointer;
   color: #ffffff;
 
   &:hover {
-    color: #61dafb;
+    color: var(--blueLight-color);
+    border-bottom: 1px solid var(--blueLight-color);
+  }
+
+  &.is-active {
+    color: var(--blueLight-color);
   }
 
   @media screen and (max-width: 800px) {
@@ -99,13 +107,13 @@ export const MenusLink = styled(Link)`
 
 export const ButtonOptions = styled.button`
   ${transitionStyle}
-  border: 1px solid #61dafb;
+  border: 1px solid var(--blueLight-color);
   border-radius: 5px;
   padding: 10px;
   cursor: pointer;
   color: #ffffff;
   background: transparent;
   &:hover {
-    color: #61dafb;
+    color: var(--blueLight-color);
   }
 `;

@@ -6,6 +6,7 @@ import CarouselMenus from "../../components/carousel-menus/carousel-menus.compon
 import { HomeContainer } from "./homepage.styles";
 
 const HomePage = ({ error }) => {
+
   return (
     <HomeContainer>
         <CarouselMenus />

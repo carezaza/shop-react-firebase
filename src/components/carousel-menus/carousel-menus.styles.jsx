@@ -13,4 +13,6 @@ export const CarouselContainer = styled(Slider)`
     left: 3%;
     z-index: 1;
   }
+}
 `;
+

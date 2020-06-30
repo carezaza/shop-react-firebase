@@ -4,7 +4,6 @@ import { createStructuredSelector } from 'reselect';
 
 import { selectCurrentUser } from '../../redux/user/user.selectors'
 
-import { ReactComponent as Logo } from "../../assets/brands/brandsSVG.svg";
 import { signOutStart } from '../../redux/user/user.actions'
 
 // import styles
@@ -16,22 +15,24 @@ import {
   HeaderContainer,
   UserContainer,
   ButtonOptions,
+  LogoSvg
 } from "./header.styles";
 
 const Header = ({ currentUser , signOutStart }) => {
+
   return (
     <HeaderContainer>
       <NavbarContainer>
         <LogoContainer to="/">
-          <Logo />
+          <LogoSvg />
         </LogoContainer>
         <MenusContainer>
-          <MenusLink to="/">Home</MenusLink>
-          <MenusLink to="/">Shop</MenusLink>
-          <MenusLink to="/admin/add_product">About</MenusLink>
+          <MenusLink exact to="/" activeClassName="is-active" >Home</MenusLink>
+          <MenusLink to="/shop" activeClassName="is-active">Shop</MenusLink>
+          <MenusLink to="/add" activeClassName="is-active">Add</MenusLink>
         </MenusContainer>
         <UserContainer>
-          { !currentUser ? <MenusLink to="/signin">Sign In</MenusLink> : <ButtonOptions onClick={signOutStart}>SignOut</ButtonOptions> }
+          { !currentUser ? <MenusLink to="/signin" activeClassName="is-active">Sign In</MenusLink> : <ButtonOptions onClick={signOutStart}>SignOut</ButtonOptions> }
         </UserContainer>
       </NavbarContainer>
     </HeaderContainer>

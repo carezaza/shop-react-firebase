@@ -12,7 +12,6 @@ import { CarouselContainer } from "./carousel-menus.styles";
 
 function CarouselMenus({ collections }) {
   var settings = {
-    dots: true,
     autoplaySpeed: 5000,
     infinite: true,
     speed: 2000,
@@ -21,6 +20,7 @@ function CarouselMenus({ collections }) {
     autoplay: true,
     arrows: true,
     lazyLoad: true,
+    dots: true
   };
 
   return (

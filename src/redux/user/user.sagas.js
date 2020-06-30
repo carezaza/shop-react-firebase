@@ -18,7 +18,7 @@ import {
   checkUserSessionSuccess
 } from "./user.actions";
 
-export function* getUserSnapShot(userAuth, additionalData) {
+function* getUserSnapShot(userAuth, additionalData) {
   try {
     const userRef = yield call(createUserProfile, userAuth, additionalData);
     const userSnapShot = yield userRef.get();
@@ -29,11 +29,11 @@ export function* getUserSnapShot(userAuth, additionalData) {
 }
 
 // ****** Sign Up ******** //
-export function* onSignUpStart() {
+function* onSignUpStart() {
   yield takeLatest(UserActionTypes.SIGN_UP_START, signUp); // go to signUp function
 }
 
-export function* signUp({ payload: { email, password, displayName } }) {
+function* signUp({ payload: { email, password, displayName } }) {
   try {
     const checkDisplayName = yield call(checkExistsDisplayName, displayName);
     if (checkDisplayName) {
@@ -49,7 +49,7 @@ export function* signUp({ payload: { email, password, displayName } }) {
   }
 }
 
-export function* isUserAuthenticated() {
+function* isUserAuthenticated() {
   try {
     const userAuth = yield getCurrentUser();
     if (!userAuth)  {
@@ -63,7 +63,7 @@ export function* isUserAuthenticated() {
   }
 }
 
-export function* signInWithEmail({ payload: { email, password } }) {
+function* signInWithEmail({ payload: { email, password } }) {
   try {
     const { user } = yield auth.signInWithEmailAndPassword(email,password);
     yield getUserSnapShot(user);
@@ -72,27 +72,28 @@ export function* signInWithEmail({ payload: { email, password } }) {
   }
 }
 
-export function* signInAfterSignUp({ payload: { user, additionalData } }) {
+
+function* signInAfterSignUp({ payload: { user, additionalData } }) {
   yield getUserSnapShot(user, additionalData);
 }
 
-export function* onCheckUserSessionStart() {
+function* onCheckUserSessionStart() {
   yield takeLatest(UserActionTypes.CHECK_USER_SESSION_START, isUserAuthenticated);
 }
 
-export function* onSignUpSuccess() {
+function* onSignUpSuccess() {
   yield takeLatest(UserActionTypes.SIGN_UP_SUCCESS, signInAfterSignUp);
 }
 
-export function* onEmailSignInStart() {
+function* onEmailSignInStart() {
   yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
 }
 
-export function* onSignOutStart() {
+function* onSignOutStart() {
   yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut);
 }
 
-export function* signOut() {
+function* signOut() {
   try {
     yield auth.signOut();
     yield put(signOutSuccess());

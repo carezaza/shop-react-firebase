@@ -35,10 +35,8 @@ export const MenuItemContainer = styled.div`
     padding: 10px;
   }
 `;
-export const Title = styled.h1`
-  ${transitionStyle}
+export const Title = styled.h2`
   transition: all 1s ease;
-  font-size: 3rem;
   color: #ffffff;
   margin: 15px 0 0 0;
 
@@ -47,34 +45,21 @@ export const Title = styled.h1`
   }
 `;
 
-export const Description = styled.h3`
-  ${transitionStyle}
+export const Description = styled.h4`
   color: #ffffff;
 `;
 
 export const MenuCard = styled.div`
   ${transitionStyle}
   display: flex;
-  border: 10px solid grey;
+  border: 5px solid grey;
   border-radius: 0px;
-  padding: 30px 15px;
+  padding: 15px 15px;
   flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.7);
   width: 800px;
-  height: auto;
+  height: 400px;
   margin: auto;
-
-  &:hover {
-    border: 10px solid ${blueLight};
-  }
-
-  &:hover ${Title} {
-    color: ${blueLight};
-  }
-
-  &:hover ${Description} {
-    color: ${blueLight};
-  }
 
   @media screen and (max-width: 800px) {
     width: 95%;
@@ -92,43 +77,67 @@ export const Image = styled.img`
   backface-visibility: hidden;
 `;
 
-export const Middle = styled.div`
-  transition: 0.5s ease;
+export const SeemoreButton = styled.button`
+  outline: none;
+  border: 1px solid grey;
+  margin: auto;
+  height: 20%;
+  width: 80%;
+  background-color: ${dark};
+  color: #ffffff;
   opacity: 0;
-  position: absolute;
-  width: auto;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
+  ${transitionStyle}
+  cursor: pointer;
+
+  &:hover {
+    background-color: #1c1f25;
+    color: ${blueLight};
+  }
+
+  @media screen and (max-width: 425px) {
+    opacity: 1;
+
+    &:hover {
+      background-color: ${dark};
+      color: 1;
+    }
+  }
 `;
 
 export const ImgContainer = styled.div`
+  display: flex;
   outline: none;
-  border-radius: 5px;
-  border: 2px solid grey;
-  width: 400px;
-  height: 300px;
+  border: 1px solid grey;
+  width: 300px;
+  height: 200px;
   margin: 10px auto;
   transition: all 1s ease;
+  background-image: ${({ bgImg }) =>
+    bgImg
+      ? `url(${bgImg})`
+      : "linear-gradient(to left,rgba(6, 157, 107, 1) 0%, rgba(0,0,0,0) 100%)"};
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 
   &:hover {
-    transform: scale(1);
-    border: 2px solid ${blueLight};
+    opacity: 0.8;
+  }
+
+  &:hover ${SeemoreButton} {
+    opacity: 1;
   }
 
   @media screen and (max-width: 425px) {
     width: 90%;
-    height: 200px;
-  }
 
-  &:hover ${Middle} {
-    opacity: 0.9;
-  }
+    &:hover {
+      opacity: 1;
+    }
 
-  &:hover ${Image} {
-    opacity: 0.5;
+    &:hover ${SeemoreButton} {
+      opacity: 1;
+    }
   }
 `;
 
@@ -136,14 +145,13 @@ export const TextImg = styled(Link)`
 ${transitionStyle}
   background-color: ${dark};
   border: 2px solid grey;
+  outline: none;
   font-size: 1rem;
   color: #ffffff;
-  padding: 16px 32px;
-  border-radius: 5px;
+  padding: 15px;
 
   &:hover {
     background-color: #1c1f25;
-    border: 2px solid ${blueLight};
     color: ${blueLight};
   }
 `;
@@ -152,8 +160,6 @@ export const Button = styled.button`
   ${transitionStyle}
   border: none;
   outline: none;
-  border: 2px solid grey;
-  border-radius: 5px;
   color: #ffffff;
   background-color: ${dark};
   margin: 20px auto;
@@ -165,7 +171,6 @@ export const Button = styled.button`
 
   &:hover {
     background-color: #1c1f25;
-    border: 2px solid ${blueLight};
     color: ${blueLight};
   }
 

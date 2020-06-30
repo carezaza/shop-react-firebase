@@ -1,10 +1,14 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+	:root {
+		--dark-color: #20232a;
+		--blueLight-color: #61dafb;
+	}
 	body {
 		margin-top: 60px !important;
-		margin-bottom: 80px !important;
 		overflow-x: hidden;
+		background: #f7f7f7;
 	}
 
 	a {
