@@ -32,8 +32,8 @@ const DrawerCart = ({ isShow, toggleShowCart, cartItems, totalPrice, quantity })
       <CheckOutContainer>
         <CheckOutLeft>
           <p style={{ margin: 0 }}>Total</p>
-          <p style={{ margin: 0 }}>Quantity: <strong>{quantity}</strong></p>
-          <p style={{ margin: 0 }}>Price: <strong>{totalPrice}฿</strong></p>
+          <p style={{ margin: 0 }}>quantity: <strong>{quantity}</strong></p>
+          <p style={{ margin: 0 }}>price: <strong>{totalPrice}฿</strong></p>
         </CheckOutLeft>
         <CheckOutRight>
           <CheckoutButton>Check out</CheckoutButton>

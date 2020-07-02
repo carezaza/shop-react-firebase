@@ -23,7 +23,6 @@ import {
 } from "./products.items.styles";
 
 const ProductsItems = ({ type, products, addItemToCart }) => {
-
   const match = useRouteMatch();
   const { typeId } = useParams();
   return (
@@ -32,7 +31,9 @@ const ProductsItems = ({ type, products, addItemToCart }) => {
         <TitleContainer>
           <Title>{type}</Title>
           {typeId === undefined ? (
-            <SeeMore to={`${match.path}/${type}`}>See more {">"}</SeeMore>
+            <SeeMore to={`${match.path}/${type}`}>
+              See {type} {">"}
+            </SeeMore>
           ) : null}
         </TitleContainer>
 
@@ -46,12 +47,17 @@ const ProductsItems = ({ type, products, addItemToCart }) => {
                 <TextName>{product.name}</TextName>
               </ProductName>
               <ContainerAdding>
-                <div>
-                  <ProductPrice>
-                    {product.price - (product.price * product.discount) / 100}฿
-                  </ProductPrice>
-                  <ProductDiscount>{product.price}฿</ProductDiscount>
-                </div>
+                {product.discount !== 0 ? (
+                  <div>
+                    <ProductPrice>
+                      {product.price - (product.price * product.discount) / 100}฿
+                    </ProductPrice>
+                    <ProductDiscount>{product.price}฿</ProductDiscount>
+                  </div>
+                ) : (
+                  <ProductPrice>{product.price}฿</ProductPrice>
+                )}
+
                 <ButtonAddProduct onClick={() => addItemToCart(product)}>
                   <CardIcon />
                 </ButtonAddProduct>

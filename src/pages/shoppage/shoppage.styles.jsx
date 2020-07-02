@@ -17,10 +17,9 @@ export const TitleShop = styled(Link)`
   animation: slide 1s ease;
   @keyframes slide {
     from {
-      transform: translateX(-10%);
+      transform: translateX(-5%);
     }
   }
-
   &:hover {
     text-decoration: underline;
   }

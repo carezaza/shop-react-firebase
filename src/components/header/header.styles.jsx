@@ -87,7 +87,7 @@ export const MenusContainer = styled.div`
 `;
 
 export const MenusLink = styled(NavLink)`
-  transition: transform .7s ease;
+  transition: transform .4s ease;
   padding: 10px;
   cursor: pointer;
   color: #ffffff;
@@ -107,15 +107,3 @@ export const MenusLink = styled(NavLink)`
   }
 `;
 
-export const ButtonUser= styled.button`
-  ${transitionStyle}
-  outline: none;
-  border: none;
-  cursor: pointer;
-  color: #ffffff;
-  background: transparent;
-  &:hover {
-    color: var(--blueLight-color);
-    transform: scale(0.95);
-  }
-`;

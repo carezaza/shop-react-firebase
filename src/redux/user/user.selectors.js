@@ -2,10 +2,13 @@ import { createSelector } from "reselect";
 
 const selectUser = (state) => state.user;
 
-export const selectCurrentUser = createSelector(
-  [selectUser],
-  (user) => user.currentUser
-);
+export const selectCurrentUser = createSelector([selectUser], (user) => {
+  if (user.currentUser) {
+    const userAuth = user.currentUser;
+    return { ...userAuth };
+  }
+  return null;
+});
 
 export const selectIsPending = createSelector(
   [selectUser],

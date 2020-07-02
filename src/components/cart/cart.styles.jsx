@@ -4,7 +4,7 @@ import { ShoppingCart } from "@material-ui/icons/";
 export const ButtonCart = styled.button`
   display: flex;
   flex-direction: row;
-  transition: all 1s ease;
+  transition: all .4s ease;
   outline: none;
   border: none;
   cursor: pointer;

@@ -16,8 +16,9 @@ export const DrawerHeader = styled.div`
   display: flex;
   justify-content: space-between;
   height: 8%;
-  border-bottom: 1px solid grey;
-  background-color: var(--blueLight-color);
+  outline: none;
+  background: #f7f7f7;
+  border-bottom: 1px #ddd solid;
   padding: 10px;
 `;
 
@@ -70,23 +71,23 @@ export const CheckOutContainer = styled.div`
   height: 12%;
   border-top: 1px solid grey;
   padding: 10px;
-  background-color: var(--blueLight-color);
+  outline: none;
+  background: #f7f7f7;
+  border-top: 1px #ddd solid;
 `;
 
 export const CheckoutButton = styled(Link)`
-  transition: all 1s ease;
-  outline: none;
-  border: none;
+  transition: text-decoration .4s ease;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
-  border-radius: 2px;
-  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 5px;
+  border: 1px solid grey;
+  background-color: var(--blueLight-color);
   color: black;
-  font-weight: bold;
+  font-weight: 600;
   &:hover {
-    color: blue;
-    transform: scale(0.98);
+    text-decoration: underline;
   }
 `;

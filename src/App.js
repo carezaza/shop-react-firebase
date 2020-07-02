@@ -3,7 +3,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
-
 import {
   selectCurrentUser,
   selectIsChecking,
@@ -23,8 +22,9 @@ const ResetPasswordPage = lazy(() =>
   import("./pages/resetpassword/resetpassword.component")
 );
 const ShopPage = lazy(() => import("./pages/shoppage/shoppage.component"));
-const CreateProduct = lazy(() => import("./pages/create-product/create-product.component"));
-
+const AdminMainPage = lazy(() =>
+  import("./pages/admin/admin-mainpage.component")
+);
 
 const App = ({
   fetchCollectionsStart,
@@ -34,8 +34,8 @@ const App = ({
 }) => {
   useEffect(() => {
     fetchCollectionsStart();
-    checkUserSessionStart();
-  }, [fetchCollectionsStart, checkUserSessionStart]);
+    // checkUserSessionStart();
+  }, [fetchCollectionsStart]);
 
   return isCheckingSession ? (
     <Spinner />
@@ -43,7 +43,6 @@ const App = ({
     <Fragment>
       <GlobalStyle />
       <Header />
-      <DrawerCart />
       <Switch>
         <ErrorBoundary>
           <Suspense fallback={<Spinner />}>
@@ -69,14 +68,13 @@ const App = ({
               }
             />
             <Route path="/shop" component={ShopPage} />
-            <Route exact path="/add" component={CreateProduct} />
+            <Route path="/admin" component={AdminMainPage} />
           </Suspense>
         </ErrorBoundary>
       </Switch>
     </Fragment>
   );
 };
-
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,

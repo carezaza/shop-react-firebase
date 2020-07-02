@@ -1,62 +1,43 @@
 import React, { Fragment, useState } from "react";
-import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
-import SendIcon from "@material-ui/icons/Send";
-import MenuList from '@material-ui/core/MenuList';
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { signOutStart } from "../../redux/user/user.actions";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { UserButtonContainer, MenuUser } from "./user-button.styles";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import DropDown from "../dropdown/dropdown.component";
 
-const StyledMenu = withStyles({
-  paper: {
-    border: "1px solid #d3d4d5",
-  },
-})((props) => (
-  <Menu
-    elevation={0}
-    getContentAnchorEl={null}
-    anchorOrigin={{
-      vertical: "bottom",
-      horizontal: "center",
-    }}
-    transformOrigin={{
-      vertical: "top",
-      horizontal: "center",
-    }}
-    {...props}
-  />
-));
-
-const StyledMenuItem = withStyles((theme) => ({
-  root: {
-    "&:focus": {
-      backgroundColor: theme.palette.primary.main,
-      "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
-        color: theme.palette.common.white,
-      },
-    },
-  },
-}))(MenuItem);
-const UserButton = () => {
-  const [show, setShow] = useState(false);
-
+const UserButton = ({ signOutStart, currentUser }) => {
+  const [open, setOpen] = useState(false);
+  const handleSignOut = () => {
+    signOutStart();
+    setOpen(false);
+  };
   return (
     <Fragment>
-      <Button
-        aria-controls="customized-menu"
-        aria-haspopup="true"
-        variant="contained"
-        color="primary"
-        onClick={() => setShow(!show)}
-      >
-        Open Menu
-      </Button>
-      
+      <UserButtonContainer onClick={() => setOpen(!open)}>
+        <AccountCircle />
+      </UserButtonContainer>
+      <DropDown open={open}>
+        <MenuUser>Account</MenuUser>
+        {currentUser.role === "admin" ? (
+          <Link to="/admin">
+            <MenuUser>Admin Page</MenuUser>
+          </Link>
+        ) : null}
+        <MenuUser onClick={handleSignOut}>Sign out</MenuUser>
+      </DropDown>
     </Fragment>
   );
 };
 
-export default UserButton;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  signOutStart: () => dispatch(signOutStart()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserButton);

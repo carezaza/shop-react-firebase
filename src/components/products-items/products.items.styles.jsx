@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 
 export const ProductsItemsContainer = styled.div`
   margin: 20px 0;
-  padding: 10px;
-
+  padding: 20px;
   animation: slide 1s ease;
   @keyframes slide {
     from {
-      transform: translateX(-10%);
+      transform: translateX(-5%);
     }
   }
 `;
@@ -26,10 +25,9 @@ export const Title = styled.h3`
 
 export const SeeMore = styled(Link)`
   margin: 10px 0;
-  transition: all 0.4s ease;
+
   &:hover {
-    color: blue;
-    transform: scale(0.99);
+    text-decoration: underline;
   }
 `;
 
@@ -40,14 +38,7 @@ export const NewLabel = styled.div`
   width: 50px;
   margin-left: auto;
   background-color: var(--blueLight-color);
-  animation: blinker 1s linear infinite;
-
-  @keyframes blinker {
-    50% {
-      opacity: 0.8;
-      background-color: #61fbcf;
-    }
-  }
+  cursor: default;
 `;
 
 export const ProductsBox = styled.div`
