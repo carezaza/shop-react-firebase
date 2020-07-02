@@ -4,17 +4,39 @@ import { Link } from "react-router-dom";
 export const ProductsItemsContainer = styled.div`
   margin: 20px 0;
   padding: 10px;
+
+  animation: slide 1s ease;
+  @keyframes slide {
+    from {
+      transform: translateX(-10%);
+    }
+  }
+`;
+
+export const TitleContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const Title = styled.h3`
-  padding: 10px 20px;
+  padding: 10px;
   margin: 0;
+  text-transform: uppercase;
+`;
+
+export const SeeMore = styled(Link)`
+  margin: 10px 0;
+  transition: all 0.4s ease;
+  &:hover {
+    color: blue;
+    transform: scale(0.99);
+  }
 `;
 
 export const NewLabel = styled.div`
   text-align: center;
   border: 1px solid grey;
-  color:  var(--dark-color);
+  color: var(--dark-color);
   width: 50px;
   margin-left: auto;
   background-color: var(--blueLight-color);
@@ -51,6 +73,10 @@ export const ProductImg = styled.div`
   border: 1px solid grey;
   padding: 1px;
   outline: none;
+  background-image: ${({ bgImg }) => (bgImg ? `url(${bgImg})` : "")};
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 `;
 
 export const ProductPrice = styled.p`
@@ -71,6 +97,11 @@ export const ProductDiscount = styled.p`
 
 export const ProductName = styled(Link)`
   margin: 10px 0;
+  transition: all 0.4s ease;
+  &:hover {
+    color: blue;
+    transform: scale(0.99);
+  }
 `;
 
 export const TextName = styled.p`

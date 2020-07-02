@@ -15,6 +15,7 @@ import { fetchCollectionsStart } from "./redux/collections/collections.actions";
 import Header from "./components/header/header.component";
 import Spinner from "./components/spinner/spinner.component";
 import ErrorBoundary from "./components/error-boundary/error-boundary.component";
+import DrawerCart from "./components/drawer-cart/drawer-cart.component";
 const HomePage = lazy(() => import("./pages/homepage/homepage.component"));
 const SignInPage = lazy(() => import("./pages/sign-in/sign-in.component"));
 const SignUpPage = lazy(() => import("./pages/sign-up/sign-up.component"));
@@ -42,6 +43,7 @@ const App = ({
     <Fragment>
       <GlobalStyle />
       <Header />
+      <DrawerCart />
       <Switch>
         <ErrorBoundary>
           <Suspense fallback={<Spinner />}>
@@ -66,7 +68,7 @@ const App = ({
                 currentUser ? <Redirect to="/" /> : <ResetPasswordPage />
               }
             />
-            <Route exact path="/shop" component={ShopPage} />
+            <Route path="/shop" component={ShopPage} />
             <Route exact path="/add" component={CreateProduct} />
           </Suspense>
         </ErrorBoundary>

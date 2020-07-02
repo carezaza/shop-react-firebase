@@ -10,6 +10,7 @@ const INITIAL_STATE = {
 const productsReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case ProductsActionTypes.ADD_PRODUCT_START:
+        case ProductsActionTypes.FETCH_PRODUCTS_START:    
             return {
                 ...state,
                 isPending: true,
@@ -21,7 +22,14 @@ const productsReducer = (state = INITIAL_STATE, action) => {
                 isPending: false,
                 successMessage: action.payload
             }
+        case ProductsActionTypes.FETCH_PRODUCTS_SUCCESS:
+            return {
+                ...state,
+                isPending: false,
+                products: action.payload
+            }    
         case ProductsActionTypes.ADD_PRODUCT_FAILURE:
+        case ProductsActionTypes.FETCH_PRODUCTS_FAILURE:    
             return {
                 ...state,
                 isPending: false,

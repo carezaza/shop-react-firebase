@@ -1,18 +1,27 @@
-import { createSelector} from 'reselect';
+import { createSelector } from "reselect";
 
-const selectProducts = (state) => state.productsData
+const selectProductsData = (state) => state.productsData;
 
 export const selectError = createSelector(
-    [selectProducts],
-    products => products.errorMessage
-)
+  [selectProductsData],
+  (data) => data.errorMessage
+);
 
 export const selectIsPending = createSelector(
-    [selectProducts],
-    products => products.isPending
-)
+  [selectProductsData],
+  (data) => data.isPending
+);
 
 export const selectSuccess = createSelector(
-    [selectProducts],
-    products => products.successMessage
-)
+  [selectProductsData],
+  (data) => data.successMessage
+);
+
+export const selectProducts = createSelector([selectProductsData], (data) =>
+  data.products ? data.products : []
+);
+
+export const selectProductsByType = (type) =>
+  createSelector([selectProducts], (products) =>
+    products ? products.filter((product) => product.type === type) : []
+  );

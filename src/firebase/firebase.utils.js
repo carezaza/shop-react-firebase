@@ -15,9 +15,13 @@ const firebaseConfig = {
 };
 
 export const getCollectionFromStore = async (collectionName) => {
-  const collectionRef = firestore.collection(collectionName);
-  const snapShot = await collectionRef.get();
-  return snapShot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  try {
+    const collectionRef = firestore.collection(collectionName);
+    const snapShot = await collectionRef.get();
+    return snapShot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const checkExistsDisplayName = async (displayName) => {
@@ -58,13 +62,20 @@ export const getCurrentUser = () => {
   });
 };
 
-export const createProduct = async ({ name, price, type, image }) => {
+export const createProduct = async ({ name, price, type, image, discount }) => {
   try {
-    const collectionRef = firestore.collection('products');
+    const collectionRef = firestore.collection("products");
     const doc = collectionRef.doc();
     const imageURL = await uploadImage(doc.id, type, image);
     const batch = firestore.batch();
-    await batch.set(doc, { name, price, type, imageURL , createdAt: new Date().toISOString() });
+    await batch.set(doc, {
+      name,
+      price,
+      type,
+      imageURL,
+      discount,
+      createdAt: new Date().toISOString(),
+    });
     return batch.commit();
   } catch (error) {
     throw error;
@@ -83,6 +94,16 @@ export const uploadImage = async (docId, type, image) => {
       .ref(`images/collections/${type}/products/${docId}`)
       .child(nameImg)
       .getDownloadURL();
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getProductsFromStore = async () => {
+  try {
+    const collectionRef = firestore.collection("products");
+    const snapShot = await collectionRef.get();
+    return snapShot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
   } catch (error) {
     throw error;
   }

@@ -20,6 +20,7 @@ export const HeaderContainer = styled.div`
   background-color: var(--dark-color);
   z-index: 1;
   padding: 10px;
+  border-bottom: 2px solid var(--blueLight-color);
 
   @media screen and (max-width: 800px) {
     padding: 10px;
@@ -72,10 +73,11 @@ export const UserContainer = styled.div`
 `;
 
 export const MenusContainer = styled.div`
+  display:flex;
+  flex-direction: row;
   width: 40%;
   height: 100%;
   display: flex;
-  margin: 0 20px;
   align-items: center;
 
   @media screen and (max-width: 800px) {
@@ -85,14 +87,14 @@ export const MenusContainer = styled.div`
 `;
 
 export const MenusLink = styled(NavLink)`
-  ${transitionStyle}
+  transition: transform .7s ease;
   padding: 10px;
   cursor: pointer;
   color: #ffffff;
 
   &:hover {
     color: var(--blueLight-color);
-    border-bottom: 1px solid var(--blueLight-color);
+    transform: scale(0.95);
   }
 
   &.is-active {
@@ -105,15 +107,15 @@ export const MenusLink = styled(NavLink)`
   }
 `;
 
-export const ButtonOptions = styled.button`
+export const ButtonUser= styled.button`
   ${transitionStyle}
-  border: 1px solid var(--blueLight-color);
-  border-radius: 5px;
-  padding: 10px;
+  outline: none;
+  border: none;
   cursor: pointer;
   color: #ffffff;
   background: transparent;
   &:hover {
     color: var(--blueLight-color);
+    transform: scale(0.95);
   }
 `;

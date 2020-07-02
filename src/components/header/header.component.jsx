@@ -5,6 +5,7 @@ import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../../redux/user/user.selectors'
 
 import { signOutStart } from '../../redux/user/user.actions'
+import AccountCircle from '@material-ui/icons/AccountCircle';
 
 // import styles
 import {
@@ -14,9 +15,11 @@ import {
   MenusLink,
   HeaderContainer,
   UserContainer,
-  ButtonOptions,
+  ButtonUser,
   LogoSvg
 } from "./header.styles";
+import Cart from '../../components/cart/cart.components';
+import UserButton from '../user-button/user-button.component'
 
 const Header = ({ currentUser , signOutStart }) => {
 
@@ -32,7 +35,8 @@ const Header = ({ currentUser , signOutStart }) => {
           <MenusLink to="/add" activeClassName="is-active">Add</MenusLink>
         </MenusContainer>
         <UserContainer>
-          { !currentUser ? <MenusLink to="/signin" activeClassName="is-active">Sign In</MenusLink> : <ButtonOptions onClick={signOutStart}>SignOut</ButtonOptions> }
+          <Cart />
+          { !currentUser ? <MenusLink to="/signin" activeClassName="is-active">Sign In</MenusLink> : <ButtonUser onClick={signOutStart}><AccountCircle/></ButtonUser> }
         </UserContainer>
       </NavbarContainer>
     </HeaderContainer>
