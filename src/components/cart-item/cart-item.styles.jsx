@@ -8,7 +8,7 @@ export const CartItemContainer = styled.div`
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
-  border: 1px solid var(--blueLight-color);
+  border: 1px solid white;
   border-radius: 2px;
   padding: 5px;
 `;
@@ -44,7 +44,7 @@ export const IncreaseAndDecreaseButton = styled.button`
   background-color: transparent;
   font-size: 18px;
   font-weight: bold;
-  color: var(--blueLight-color);
+  color: #f50057;
 `;
 
 export const RemoveButton = styled.button`
@@ -55,7 +55,7 @@ export const RemoveButton = styled.button`
   background-color: transparent;
   font-size: 18px;
   font-weight: bold;
-  color: var(--blueLight-color);
+  color: #f50057;
 `;
 
 export const NameLink = styled(Link)`
@@ -64,5 +64,5 @@ export const NameLink = styled(Link)`
   cursor: pointer;
   background-color: transparent;
   font-size: 14px;
-  color: var(--blueLight-color);
+  color: #f50057;
 `;

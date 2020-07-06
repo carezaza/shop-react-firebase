@@ -24,3 +24,8 @@ export const selectIsChecking = createSelector(
   [selectUser],
   (user) => user.isChecking
 );
+
+export const selectDropdown = createSelector(
+  [selectUser],
+  user => user.dropdownShow
+)

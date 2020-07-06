@@ -4,7 +4,8 @@ const INITIAL_STATE = {
   currentUser: null,
   isPending: false,
   errorMessage: null,
-  isChecking: false
+  isChecking: false,
+  dropdownShow: false,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -34,6 +35,9 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case UserActionTypes.SIGN_UP_START:
     case UserActionTypes.EMAIL_SIGN_IN_START:
     case UserActionTypes.SIGN_OUT_START:
+    case UserActionTypes.ADD_ADDRESS_FAILURE:
+    case UserActionTypes.DELETE_ADDRESS_FAILURE:
+    case UserActionTypes.EDIT_ADDRESS_FAILURE:
       return {
         ...state,
         isPending: true,
@@ -43,12 +47,35 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isChecking: true,
-      }
+      };
     case UserActionTypes.CHECK_USER_SESSION_SUCCESS:
       return {
         ...state,
         isChecking: false,
-      }
+      };
+    case UserActionTypes.TOGGLE_DROPDOWN:
+      return {
+        ...state,
+        dropdownShow: !state.dropdownShow,
+      };
+    case UserActionTypes.ADD_ADDRESS_START:
+    case UserActionTypes.DELETE_ADDRESS_START:
+    case UserActionTypes.EDIT_ADDRESS_START:
+      return {
+        ...state,
+        isPending: true,
+        errorMessage: null,
+      };
+    case UserActionTypes.ADD_ADDRESS_SUCCESS:
+    case UserActionTypes.DELETE_ADDRESS_SUCCESS:
+    case UserActionTypes.EDIT_ADDRESS_SUCCESS:
+      return {
+        ...state,
+        isPending: false,
+        errorMessage: null,
+        currentUser: { ...state.currentUser, address: action.payload },
+      };
+
     default:
       return state;
   }

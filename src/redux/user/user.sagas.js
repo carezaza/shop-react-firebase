@@ -6,6 +6,9 @@ import {
   createUserProfile,
   checkExistsDisplayName,
   getCurrentUser,
+  addAddressToUser,
+  deleteAddressFromUser,
+  editAddressFromUser,
 } from "../../firebase/firebase.utils";
 
 import {
@@ -15,7 +18,13 @@ import {
   signUpFailure,
   signOutSuccess,
   signOutFailure,
-  checkUserSessionSuccess
+  checkUserSessionSuccess,
+  addAddressSuccess,
+  addAddressFailure,
+  deleteAddressSuccess,
+  deleteAddressFailure,
+  editAddressSuccess,
+  editAddressFailure,
 } from "./user.actions";
 
 function* getUserSnapShot(userAuth, additionalData) {
@@ -52,7 +61,7 @@ function* signUp({ payload: { email, password, displayName } }) {
 function* isUserAuthenticated() {
   try {
     const userAuth = yield getCurrentUser();
-    if (!userAuth)  {
+    if (!userAuth) {
       yield put(checkUserSessionSuccess());
       return;
     }
@@ -65,20 +74,54 @@ function* isUserAuthenticated() {
 
 function* signInWithEmail({ payload: { email, password } }) {
   try {
-    const { user } = yield auth.signInWithEmailAndPassword(email,password);
+    const { user } = yield auth.signInWithEmailAndPassword(email, password);
     yield getUserSnapShot(user);
   } catch (error) {
     yield put(signInFailure(error.message));
   }
 }
 
+function* addAddress({ payload: { address, currentUser } }) {
+  try {
+    const userAddress = yield call(addAddressToUser, address, currentUser);
+    yield put(addAddressSuccess(userAddress));
+  } catch (error) {
+    yield put(addAddressFailure(error.message));
+  }
+}
+
+function* deleteAddress({ payload: { index, currentUser } }) {
+  try {
+    const userAddress = yield call(deleteAddressFromUser, index, currentUser);
+    yield put(deleteAddressSuccess(userAddress));
+  } catch (error) {
+    yield put(deleteAddressFailure(error.message));
+  }
+}
+
+function* editAddress({ payload: { addressIndex, address, currentUser } }) {
+  try {
+    const userAddress = yield call(
+      editAddressFromUser,
+      addressIndex,
+      address,
+      currentUser
+    );
+    yield put(editAddressSuccess(userAddress));
+  } catch (error) {
+    yield put(editAddressFailure(error.message));
+  }
+}
 
 function* signInAfterSignUp({ payload: { user, additionalData } }) {
   yield getUserSnapShot(user, additionalData);
 }
 
 function* onCheckUserSessionStart() {
-  yield takeLatest(UserActionTypes.CHECK_USER_SESSION_START, isUserAuthenticated);
+  yield takeLatest(
+    UserActionTypes.CHECK_USER_SESSION_START,
+    isUserAuthenticated
+  );
 }
 
 function* onSignUpSuccess() {
@@ -93,15 +136,26 @@ function* onSignOutStart() {
   yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut);
 }
 
+function* onAddAdress() {
+  yield takeLatest(UserActionTypes.ADD_ADDRESS_START, addAddress);
+}
+
+function* onDeleteAddress() {
+  yield takeLatest(UserActionTypes.DELETE_ADDRESS_START, deleteAddress);
+}
+
+function* onEditAddress() {
+  yield takeLatest(UserActionTypes.EDIT_ADDRESS_START, editAddress);
+}
+
 function* signOut() {
   try {
     yield auth.signOut();
     yield put(signOutSuccess());
-  }catch (error) {
+  } catch (error) {
     yield put(signOutFailure(error.message));
   }
 }
-
 
 export function* userSagas() {
   yield all([
@@ -109,6 +163,9 @@ export function* userSagas() {
     call(onSignUpSuccess),
     call(onCheckUserSessionStart),
     call(onEmailSignInStart),
-    call(onSignOutStart)
+    call(onSignOutStart),
+    call(onAddAdress),
+    call(onDeleteAddress),
+    call(onEditAddress),
   ]);
 }

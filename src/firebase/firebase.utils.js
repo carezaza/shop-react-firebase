@@ -14,6 +14,8 @@ const firebaseConfig = {
   measurementId: "G-F9EMZ57NB0",
 };
 
+firebase.initializeApp(firebaseConfig);
+
 export const getCollectionFromStore = async (collectionName) => {
   try {
     const collectionRef = firestore.collection(collectionName);
@@ -29,8 +31,6 @@ export const checkExistsDisplayName = async (displayName) => {
   return snapShot.docs.find((doc) => doc.data().displayName === displayName);
 };
 
-firebase.initializeApp(firebaseConfig);
-
 export const createUserProfile = async (userAuth, additionalData) => {
   const { email, uid } = userAuth;
   const usersRef = firestore.doc(`users/${uid}`);
@@ -44,6 +44,7 @@ export const createUserProfile = async (userAuth, additionalData) => {
         uid,
         email,
         createdAt: now,
+        address: [],
         ...additionalData,
       });
     } catch (error) {
@@ -104,6 +105,93 @@ export const getProductsFromStore = async () => {
     const collectionRef = firestore.collection("products");
     const snapShot = await collectionRef.get();
     return snapShot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const addAddressToUser = async (address, user) => {
+  try {
+    const usersRef = firestore.doc(`users/${user.id}`);
+    const snapShot = await usersRef.get();
+    const userAddress = snapShot.data().address;
+    userAddress.push(address);
+    await usersRef.update({ address: userAddress });
+    return userAddress;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteAddressFromUser = async (indexAddress, user) => {
+  try {
+    const usersRef = firestore.doc(`users/${user.id}`);
+    const snapShot = await usersRef.get();
+    const userAddress = snapShot.data().address;
+    if (userAddress.length < 1) return [];
+    userAddress.splice(0, 1);
+    await usersRef.update({ address: userAddress });
+    return userAddress;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const editAddressFromUser = async (index, address, user) => {
+  try {
+    const usersRef = firestore.doc(`users/${user.id}`);
+    const snapShot = await usersRef.get();
+    const userAddress = snapShot.data().address;
+    userAddress[index] = address;
+    await usersRef.update({ address: userAddress });
+    return userAddress;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const createOrderToStore = async (order) => {
+  try {
+    const collectionRef = firestore.collection("orders");
+    const batch = firestore.batch();
+    await batch.set(collectionRef.doc(), {
+      ...order,
+      status: { shipment: false, paid: false },
+    });
+    return batch.commit();
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchOrdersFromStore = async (userId) => {
+  try {
+    const collectionRef = firestore.collection("orders");
+    const snapShot = await collectionRef.get();
+    const orders = snapShot.docs.map((doc) => ({id: doc.id, ...doc.data()}));
+    return orders;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchUsersFromStore = async () => {
+  try {
+    const collectionRef = firestore.collection("users");
+    const snapShot = await collectionRef.get();
+    const users = snapShot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    return users;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteUserAuth = async (userId) => {
+  try {
+    const usersRef = firestore.doc(`users/${userId}`);
+    const batch = firestore.batch();
+    await batch.delete(usersRef);
+    return batch.commit();
   } catch (error) {
     throw error;
   }

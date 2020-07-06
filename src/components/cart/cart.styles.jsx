@@ -1,22 +1,15 @@
 import styled from "styled-components";
 import { ShoppingCart } from "@material-ui/icons/";
+import IconButton from "@material-ui/core/IconButton";
 
-export const ButtonCart = styled.button`
-  display: flex;
-  flex-direction: row;
-  transition: all .4s ease;
+export const ButtonCart = styled(IconButton)`
+  transition: all 0.4s ease !important;
   outline: none;
   border: none;
   cursor: pointer;
-  color: #ffffff;
-  background: transparent;
+  color: rgba(255, 255, 255, 0.9) !important;
   &:hover {
-    color: var(--blueLight-color);
-    transform: scale(0.95);
+    transform: scale(.95);
+    color: var(--blueLight-color) !important;
   }
-`;
-
-export const ShopCart = styled(ShoppingCart)`
-  width: 18px !important;
-  height: 18px !important;
 `;

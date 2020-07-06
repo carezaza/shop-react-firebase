@@ -15,7 +15,7 @@ import {
   ImgContainer,
 } from "./homepage.styles";
 
-const HomePage = ({ collections  }) => {
+const HomePage = ({ collections }) => {
   return (
     <HomeContainer>
       <CollectionsContainer>
@@ -28,7 +28,11 @@ const HomePage = ({ collections  }) => {
         <MenusContainer>
           {collections.map((collection) => (
             <ImgContainer key={collection.id} bgImg={collection.image}>
-              <SeeMoreButton to={`/shop/${collection.title}`} >Shop {collection.title.charAt(0).toUpperCase() + collection.title.slice(1)}</SeeMoreButton>
+              <SeeMoreButton to={`/shop/${collection.title}`}>
+                Shop{" "}
+                {collection.title.charAt(0).toUpperCase() +
+                  collection.title.slice(1)}
+              </SeeMoreButton>
             </ImgContainer>
           ))}
         </MenusContainer>

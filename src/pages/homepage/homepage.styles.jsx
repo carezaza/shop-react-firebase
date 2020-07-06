@@ -3,9 +3,12 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const HomeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  background-color:red;
+  height: calc(100vh - 60px);
+  display:flex;
+  justify-content:center;
   align-items: center;
+  background-color: var(--dark-color);
 `;
 
 export const CollectionsContainer = styled.div`
@@ -14,8 +17,6 @@ export const CollectionsContainer = styled.div`
   flex-direction: column;
   width: 100%;
   height: 500px;
-  background-color: var(--dark-color);
-  border-bottom: 2px solid var(--blueLight-color);
 `;
 
 export const Title = styled.h2`
@@ -115,26 +116,27 @@ export const SeeMoreButton = styled(Link)`
   }
 `;
 
-const randomColor = () => {
-  var letters = "0123456789ABCDEF";
-  var color = "#";
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-};
+// const randomColor = () => {
+//   var letters = "0123456789ABCDEF";
+//   var color = "#";
+//   for (var i = 0; i < 6; i++) {
+//     color += letters[Math.floor(Math.random() * 16)];
+//   }
+//   return color;
+// };
 
 export const ImgContainer = styled.div`
   display: flex;
   outline: none;
   border-radius: 5px;
-  border: 1px solid ${randomColor()};
+  border: 1px solid grey;
   margin: 10px;
   transition: all 1s ease;
   background-image: ${({ bgImg }) => (bgImg ? `url(${bgImg})` : "")};
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
+  animation: blink 10s linear infinite;
 
   &:hover {
     opacity: 0.8;

@@ -19,7 +19,7 @@ const CartItem = ({ item, addItem, removeItem, clearItem}) => {
       <ImageItem src={imageURL} />
       <InformationContainer>
         <NameAndRemoveContainer>
-          <NameLink>{name}</NameLink>
+          <NameLink to="/">{name}</NameLink>
           <RemoveButton onClick={() => clearItem(item)}>🗑</RemoveButton>
         </NameAndRemoveContainer>
         <QuantityAndPrice>

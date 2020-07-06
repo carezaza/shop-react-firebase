@@ -17,8 +17,7 @@ export const DrawerHeader = styled.div`
   justify-content: space-between;
   height: 8%;
   outline: none;
-  background: #f7f7f7;
-  border-bottom: 1px #ddd solid;
+  background: white;
   padding: 10px;
 `;
 
@@ -39,7 +38,6 @@ export const ButtonClose = styled.button`
 
 export const DrawerBox = styled.div`
   transition: right 0.2s ease;
-  border-left: 1px solid grey;
   position: fixed;
   top: 0;
   right: ${({ show }) => (show ? "0" : "-100%")};
@@ -69,11 +67,9 @@ export const CheckOutContainer = styled.div`
   display: flex;
   flex-direction: row;
   height: 12%;
-  border-top: 1px solid grey;
   padding: 10px;
   outline: none;
-  background: #f7f7f7;
-  border-top: 1px #ddd solid;
+  background: white;
 `;
 
 export const CheckoutButton = styled(Link)`
@@ -91,3 +87,4 @@ export const CheckoutButton = styled(Link)`
     text-decoration: underline;
   }
 `;
+

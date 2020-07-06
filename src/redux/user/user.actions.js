@@ -1,14 +1,63 @@
 import UserActionTypes from "./user.types";
 
+export const editAddressStart = (indexAndAddressAndUser) => ({
+  type: UserActionTypes.EDIT_ADDRESS_START,
+  payload: indexAndAddressAndUser
+})
+
+export const editAddressSuccess = (address) => ({
+  type: UserActionTypes.EDIT_ADDRESS_SUCCESS,
+  payload: address
+})
+
+export const editAddressFailure = (error) => ({
+  type: UserActionTypes.EDIT_ADDRESS_FAILURE,
+  payload: error
+})
+
+export const deleteAddressStart = (addressIndexAndUser) => ({
+  type: UserActionTypes.DELETE_ADDRESS_START,
+  payload: addressIndexAndUser
+})
+
+export const deleteAddressSuccess = (address) => ({
+  type: UserActionTypes.DELETE_ADDRESS_SUCCESS,
+  payload: address
+})
+
+export const deleteAddressFailure = (error) => ({
+  type: UserActionTypes.DELETE_ADDRESS_FAILURE,
+  payload: error
+})
+
+export const addAddressStart = (address) => ({
+  type: UserActionTypes.ADD_ADDRESS_START,
+  payload: address,
+});
+
+export const addAddressSuccess = (address) => ({
+  type: UserActionTypes.ADD_ADDRESS_SUCCESS,
+  payload: address,
+});
+
+export const addAddressFailure = (error) => ({
+  type: UserActionTypes.ADD_ADDRESS_FAILURE,
+  payload: error,
+})
+
+export const toggleDropdown = () => ({
+  type: UserActionTypes.TOGGLE_DROPDOWN,
+});
+
 export const signInWithEmail = (emailAndPassword) => ({
   type: UserActionTypes.EMAIL_SIGN_IN_START,
   payload: emailAndPassword,
-})
+});
 
 export const signInSuccess = (user) => ({
   type: UserActionTypes.SIGN_IN_SUCCESS,
-  payload: user
-})
+  payload: user,
+});
 
 export const signUpStart = (userCredentials) => ({
   type: UserActionTypes.SIGN_UP_START,
@@ -31,11 +80,11 @@ export const signUpFailure = (error) => ({
 });
 
 export const checkUserSessionStart = () => ({
-  type: UserActionTypes.CHECK_USER_SESSION_START
+  type: UserActionTypes.CHECK_USER_SESSION_START,
 });
 
 export const checkUserSessionSuccess = () => ({
-  type: UserActionTypes.CHECK_USER_SESSION_SUCCESS
+  type: UserActionTypes.CHECK_USER_SESSION_SUCCESS,
 });
 
 export const signOutStart = () => ({
@@ -48,5 +97,5 @@ export const signOutSuccess = () => ({
 
 export const signOutFailure = (errorMessage) => ({
   type: UserActionTypes.SIGN_OUT_FAILURE,
-  payload: errorMessage
+  payload: errorMessage,
 });

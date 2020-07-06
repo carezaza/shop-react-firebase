@@ -25,6 +25,14 @@ const ShopPage = lazy(() => import("./pages/shoppage/shoppage.component"));
 const AdminMainPage = lazy(() =>
   import("./pages/admin/admin-mainpage.component")
 );
+const CheckOut = lazy(() => import("./pages/checkout/checkout.component"));
+const OrderConfirm = lazy(() =>
+  import("./pages/order-confirm/order-confirm.component")
+);
+const CreateOrderSuccess = lazy(() =>
+  import("./pages/create-order-success/create-order-success.componnent")
+);
+const Account = lazy(() => import("./pages/account/account.component"));
 
 const App = ({
   fetchCollectionsStart,
@@ -34,8 +42,8 @@ const App = ({
 }) => {
   useEffect(() => {
     fetchCollectionsStart();
-    // checkUserSessionStart();
-  }, [fetchCollectionsStart]);
+    checkUserSessionStart();
+  }, [fetchCollectionsStart, checkUserSessionStart]);
 
   return isCheckingSession ? (
     <Spinner />
@@ -61,12 +69,26 @@ const App = ({
                 currentUser ? <Redirect to="/" /> : <SignUpPage />
               }
             />
+
             <Route
               path="/password_reset"
               render={() =>
                 currentUser ? <Redirect to="/" /> : <ResetPasswordPage />
               }
             />
+            <Route
+              path="/checkout"
+              render={() =>
+                currentUser ? <CheckOut /> : <Redirect to="/signin" />
+              }
+            />
+
+            <Route path="/order_confirm" component={OrderConfirm} />
+            <Route
+              path="/create_order_success"
+              component={CreateOrderSuccess}
+            />
+            <Route path="/account" component={Account} />
             <Route path="/shop" component={ShopPage} />
             <Route path="/admin" component={AdminMainPage} />
           </Suspense>

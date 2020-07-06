@@ -20,7 +20,7 @@ export const HeaderContainer = styled.div`
   background-color: var(--dark-color);
   z-index: 1;
   padding: 10px;
-  border-bottom: 2px solid var(--blueLight-color);
+  border-bottom: 2px solid #f50057;
 
   @media screen and (max-width: 800px) {
     padding: 10px;

@@ -93,6 +93,7 @@ export const CreateAccount = styled.div`
   font-weight: 600;
 `;
 
+
 // animation-name: example;
 // animation-duration: 2s;
 // animation-iteration-count: infinite;
