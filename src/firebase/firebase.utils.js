@@ -4,14 +4,14 @@ import "firebase/firestore";
 import "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyATw2pzgW-QnX8hzw9vR_3BYD-WX6tLRuo",
-  authDomain: "care-clothing-e660e.firebaseapp.com",
-  databaseURL: "https://care-clothing-e660e.firebaseio.com",
-  projectId: "care-clothing-e660e",
-  storageBucket: "care-clothing-e660e.appspot.com",
-  messagingSenderId: "192493669674",
-  appId: "1:192493669674:web:1c303a71d72339d385e253",
-  measurementId: "G-F9EMZ57NB0",
+  apiKey: "AIzaSyDekMtvk2bVqY68hYrX-l6qJcq201jUKWI",
+  authDomain: "shop-test1-c6779.firebaseapp.com",
+  databaseURL: "https://shop-test1-c6779.firebaseio.com",
+  projectId: "shop-test1-c6779",
+  storageBucket: "shop-test1-c6779.appspot.com",
+  messagingSenderId: "531416323909",
+  appId: "1:531416323909:web:5c922eba5a0f9c2868502c",
+  measurementId: "G-ZJ4GC8K1ZG",
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -168,7 +168,7 @@ export const fetchOrdersFromStore = async (userId) => {
   try {
     const collectionRef = firestore.collection("orders");
     const snapShot = await collectionRef.get();
-    const orders = snapShot.docs.map((doc) => ({id: doc.id, ...doc.data()}));
+    const orders = snapShot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
     return orders;
   } catch (error) {
     throw error;

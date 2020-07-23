@@ -17,6 +17,11 @@ export const selectSuccess = createSelector(
   (data) => data.successMessage
 );
 
+export const selectProduct = createSelector(
+  [selectProductsData],
+  (data) => data.products
+);
+
 export const selectProducts = createSelector([selectProductsData], (data) =>
   data.products ? data.products : []
 );

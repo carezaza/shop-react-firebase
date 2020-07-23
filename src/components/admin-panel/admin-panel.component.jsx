@@ -8,6 +8,7 @@ import FaceIcon from "@material-ui/icons/Face";
 import WorkIcon from "@material-ui/icons/Work";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AddBoxIcon from '@material-ui/icons/AddBox';
 import {
   AdminPanelContainer,
   ProfileContainer,
@@ -32,6 +33,12 @@ const AdminPanel = ({ currentUser , match, signOutStart }) => {
           <AssignmentIndIcon />
         </IconLink>
         Users
+      </LinkPanel>
+      <LinkPanel to={`${match.path}/create_product`}>
+        <IconLink>
+          <AddBoxIcon />
+        </IconLink>
+        Create Product
       </LinkPanel>
       <LinkPanel to={`${match.path}/products`}>
         <IconLink>

@@ -50,7 +50,8 @@ const ProductsItems = ({ type, products, addItemToCart }) => {
                 {product.discount !== 0 ? (
                   <div>
                     <ProductPrice>
-                      {product.price - (product.price * product.discount) / 100}฿
+                      {product.price - (product.price * product.discount) / 100}
+                      ฿
                     </ProductPrice>
                     <ProductDiscount>{product.price}฿</ProductDiscount>
                   </div>
