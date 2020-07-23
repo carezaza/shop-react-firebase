@@ -30,6 +30,7 @@ import {
   Typography,
 } from "@material-ui/core/";
 import Spinner from "../../components/spinner/spinner.component";
+import CreateOrderSuccess from '../../pages/create-order-success/create-order-success.componnent'
 
 const OrderConfirm = ({
   cartItems,
@@ -72,7 +73,7 @@ const OrderConfirm = ({
     }
     setOrder((state) => ({ ...state, [name]: value }));
   };
-  if (successOrder) return <Redirect to="/create_order_success" />;
+  if (successOrder) return <CreateOrderSuccess />;
   if (cartItems.length === 0) return <Redirect to="/checkout" />;
   return isPendingOrder ? (
     <Spinner />

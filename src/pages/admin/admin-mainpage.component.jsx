@@ -11,7 +11,7 @@ import AdminPanel from "../../components/admin-panel/admin-panel.component";
 import UserForAdmin from "../../components/users-for-admin/user-for-admin.component";
 import ProductsForAdmin from "../../components/products-for-admin/products-for-admin.component";
 import OrderForAdmin from "../../components/orders-for-admin/orders-for-admin.components";
-import CreateOrderSuccess from "../create-product/create-product.component";
+import CreateProduct from "../create-product/create-product.component";
 
 const AdminMainPage = ({ currentUser, match, fetchOrdersStart }) => {
   useEffect(() => {
@@ -38,7 +38,7 @@ const AdminMainPage = ({ currentUser, match, fetchOrdersStart }) => {
               />
               <Route
                 path={`${match.path}/create_product`}
-                component={CreateOrderSuccess}
+                component={CreateProduct}
               />
             </Suspense>
           </ErrorBoundary>

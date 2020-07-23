@@ -80,7 +80,7 @@ const App = ({
                 currentUser ? <CheckOut /> : <Redirect to="/signin" />
               }
             />
-
+  
             <Route path="/order_confirm" component={OrderConfirm} />
             <Route path="/account" component={Account} />
             <Route path="/shop" component={ShopPage} />
