@@ -49,7 +49,7 @@ function addItemToCart(cartArray, itemObj) {
     {
       ...itemObj,
       quantity: 1,
-      realPrice: itemObj.price - (itemObj.price * itemObj.discount) / 100,
+      realPrice: Math.round(itemObj.price - (itemObj.price * itemObj.discount) / 100),
     },
   ];
 }
