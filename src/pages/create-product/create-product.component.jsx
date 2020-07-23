@@ -37,7 +37,7 @@ const CreateProduct = ({
   addProductStart,
   successMsg,
   isPending,
-  addProductSuccess
+  addProductSuccess,
 }) => {
   const [activeStep, setActiveStep] = useState(0);
   const steps = getSteps();
@@ -95,7 +95,7 @@ const CreateProduct = ({
 
   const setImgFile = (file) => {
     try {
-      const typeAccepts = [".jpg", ".png"];
+      const typeAccepts = [".jpg", ".png" , "jpeg"];
       const FileType = file.name.slice(file.name.length - 4);
       if (typeAccepts.find((type) => type === FileType)) {
         const size = file.size * Math.pow(10, -6);
@@ -168,7 +168,11 @@ const CreateProduct = ({
               <div style={{ margin: "20px 0" }}>
                 <Button onClick={handleReset}>Add more?</Button>
                 <Link to="/">
-                  <Button variant="contained" color="primary" onClick={() =>   addProductSuccess(null)}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => addProductSuccess(null)}
+                  >
                     Go home
                   </Button>
                 </Link>
@@ -189,12 +193,14 @@ const CreateProduct = ({
                   })
                 )}
               </div>
-              <div style={{ padding: "20px 10px" }}>
-                <Button disabled={activeStep === 0} onClick={handleBack}>
-                  Back
-                </Button>
-                {getButtonStep(activeStep)}
-              </div>
+              {!isPending && (
+                <div style={{ padding: "20px 10px" }}>
+                  <Button disabled={activeStep === 0} onClick={handleBack}>
+                    Back
+                  </Button>
+                  {getButtonStep(activeStep)}
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -213,7 +219,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   addProductFailure: (error) => dispatch(addProductFailure(error)),
   addProductStart: (product) => dispatch(addProductStart(product)),
-  addProductSuccess: (success) => dispatch(addProductSuccess(success))
+  addProductSuccess: (success) => dispatch(addProductSuccess(success)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProduct);

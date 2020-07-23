@@ -8,13 +8,13 @@ import { createStructuredSelector } from "reselect";
 
 const ShopAll = ({ types, products }) => {
   return (
-    <>
-      {products.length > 0 ? (
+    <React.Fragment>
+      {products && products.length > 0 ? (
         types.map((type, index) => <ProductsItems key={index} type={type} />)
       ) : (
-        <div style={{ margin: "10px auto",fontSize:18 }}>No items.</div>
+        <div style={{ margin: "10px auto", fontSize: 18 }}>No items.</div>
       )}
-    </>
+    </React.Fragment>
   );
 };
 
