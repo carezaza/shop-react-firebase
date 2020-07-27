@@ -10,6 +10,7 @@ export const ProductsItemsContainer = styled.div`
       transform: translateX(-5%);
     }
   }
+
 `;
 
 export const TitleContainer = styled.div`
@@ -46,6 +47,18 @@ export const ProductsBox = styled.div`
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 10px;
   padding: 10px;
+
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const ProductCard = styled.div`

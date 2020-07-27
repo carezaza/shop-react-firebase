@@ -23,15 +23,12 @@ import {
   TableCell,
   TableHead,
   Button,
-  Icon,
   IconButton,
   Typography,
 } from "@material-ui/core/";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 import ArrowLeftIcon from "@material-ui/icons/ArrowLeft";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import SendIcon from "@material-ui/icons/Send";
 
 const useStyles = makeStyles((theme) => ({
   headText: {
@@ -102,7 +99,7 @@ const CheckOut = ({
               </TableHead>
               <TableBody>
                 {cartItems.map((item) => (
-                  <TableRow key={item.id} >
+                  <TableRow key={item.id}>
                     <TableCell component="th" scope="row" align="center">
                       <ProductImage src={item.imageURL} />
                     </TableCell>

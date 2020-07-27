@@ -14,7 +14,7 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Button,
+
   IconButton,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -30,12 +30,15 @@ const ProductsForAdmin = ({ products, isPending }) => {
   };
   return (
     <div style={{ padding: 20 }}>
+      <h3 style={{ textAlign: "center", color: "black" }}>
+        In the progress...
+      </h3>
       <Typography variant="h5" align="center">
         Products
       </Typography>
       <TableContainer
         component={Paper}
-        style={{ margin: "20px", width: "auto" }}
+        style={{ margin: "10px", width: "100%" }}
       >
         <Table aria-label="products-table">
           <TableHead>

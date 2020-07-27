@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { createOrderSuccess } from "../../redux/order/order.actions";
 import { connect } from "react-redux";
@@ -14,7 +14,7 @@ const CreateOrderSuccess = ({ successMessage,createOrderSuccess }) => {
     return () => {
       createOrderSuccess(null);
     }
-  },[]);
+  },[createOrderSuccess]);
 
   if (!successMessage) return <Redirect to="/" />;
   return (

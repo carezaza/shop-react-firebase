@@ -2,16 +2,14 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const AdminPanelContainer = styled.div`
-  position: fixed;
   display: flex;
   outline: none;
   border: none;
   flex-direction: column;
-  top: 60px;
-  left: 0;
   height: 100%;
   padding: 10px 0;
-  width: 250px;
+  width: ${({ expand }) => (expand ? "250px" : "0")};
+  transition: all 0.3s ease;
   background-color: var(--dark-color);
 `;
 

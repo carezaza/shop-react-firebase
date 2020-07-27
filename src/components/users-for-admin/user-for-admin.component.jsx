@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Typography,
   Table,
@@ -8,9 +8,7 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Button,
   IconButton,
-  NativeSelect,
   TextField,
   Select,
   MenuItem,
@@ -36,7 +34,7 @@ const UserForAdmin = ({ users, isFetching, error, fetchUsersStart }) => {
   const [user, setUser] = useState({});
   useEffect(() => {
     fetchUsersStart();
-  }, []);
+  }, [fetchUsersStart]);
 
   const handleEdit = (user) => {
     setUser(user);
@@ -51,12 +49,15 @@ const UserForAdmin = ({ users, isFetching, error, fetchUsersStart }) => {
   if (isFetching) return <Loading />;
   return (
     <div style={{ padding: 20 }}>
+      <h3 style={{ textAlign: "center", color: "black" }}>
+        In the progress...
+      </h3>
       <Typography variant="h5" align="center">
         Users
       </Typography>
       <TableContainer
         component={Paper}
-        style={{ margin: "20px", width: "auto" }}
+        style={{ margin: "10px", width: "100%" }}
       >
         <Table aria-label="simple table">
           <TableHead>

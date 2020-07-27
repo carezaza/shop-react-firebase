@@ -1,11 +1,11 @@
-import React, { Fragment, Suspense, lazy, useEffect } from "react";
+import React, { Suspense, lazy, useEffect, useCallback } from "react";
 import { connect } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import ErrorBoundary from "../../components/error-boundary/error-boundary.component";
 import Loading from "../../components/loading/loading.component";
 import AccountPanel from "../../components/account-panel/account-panel.component";
 import { fetchOrdersStart } from "../../redux/order/order.actions";
-import { AccountContainer } from "./account.styles";
+import { AccountContainer, Container } from "./account.styles";
 const AccountInfo = lazy(() =>
   import("../../components/account-info/account-info.component")
 );
@@ -14,11 +14,16 @@ const OrderInfo = lazy(() =>
 );
 
 const Account = ({ match, fetchOrdersStart }) => {
-  useEffect(() => {
+  const fetchOrder = useCallback(() => {
     fetchOrdersStart();
-  }, []);
+  }, [fetchOrdersStart]);
+
+  useEffect(() => {
+    fetchOrder();
+  }, [fetchOrder]);
+
   return (
-    <Fragment>
+    <Container>
       <AccountPanel />
       <AccountContainer>
         <Switch>
@@ -30,10 +35,9 @@ const Account = ({ match, fetchOrdersStart }) => {
           </ErrorBoundary>
         </Switch>
       </AccountContainer>
-    </Fragment>
+    </Container>
   );
 };
-
 
 const mapDispatchToProps = (dispatch) => ({
   fetchOrdersStart: () => dispatch(fetchOrdersStart()),

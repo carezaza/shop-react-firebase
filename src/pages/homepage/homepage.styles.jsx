@@ -3,12 +3,20 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const HomeContainer = styled.div`
-  background-color:red;
-  height: calc(100vh - 60px);
-  display:flex;
-  justify-content:center;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
   align-items: center;
   background-color: var(--dark-color);
+  overflow-y: auto;
+
+  @media screen and (max-width: 600px) {
+    padding: 50px 0;
+  }
 `;
 
 export const CollectionsContainer = styled.div`
@@ -16,7 +24,9 @@ export const CollectionsContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 500px;
+  @media screen and (max-width: 600px) {
+    margin-bottom: auto;
+  }
 `;
 
 export const Title = styled.h2`
@@ -56,11 +66,16 @@ export const HappyTextContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin: auto;
+  padding: 20px;
   animation: slide 1s ease;
   @keyframes slide {
     from {
       transform: translateX(-10%);
     }
+  }
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
   }
 `;
 
@@ -74,8 +89,8 @@ export const HappyText = styled.div`
 
 export const MenusContainer = styled.div`
   margin: auto;
-  width: 90%;
-  height: 250px;
+  max-width: 1200px;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   animation: slide 1s ease;
@@ -83,6 +98,12 @@ export const MenusContainer = styled.div`
     from {
       transform: translateX(-10%);
     }
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -129,6 +150,7 @@ export const ImgContainer = styled.div`
   display: flex;
   outline: none;
   border-radius: 5px;
+  height: 200px;
   border: 1px solid grey;
   margin: 10px;
   transition: all 1s ease;
@@ -146,14 +168,12 @@ export const ImgContainer = styled.div`
     opacity: 1;
   }
 
-  @media screen and (max-width: 425px) {
-    width: 90%;
-
-    &:hover {
+  @media screen and (max-width: 600px) {
+    & {
       opacity: 1;
     }
 
-    &:hover ${SeeMoreButton} {
+    & ${SeeMoreButton} {
       opacity: 1;
     }
   }

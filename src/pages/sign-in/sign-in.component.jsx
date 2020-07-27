@@ -48,7 +48,7 @@ const SignIn = ({
   };
 
   return (
-    <SignInContainer >
+    <SignInContainer>
       <Link to="/">
         <SvgLogo isPending={isPending} />
       </Link>

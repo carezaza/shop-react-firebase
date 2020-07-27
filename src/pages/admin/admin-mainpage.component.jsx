@@ -1,6 +1,6 @@
-import React, { Fragment, Suspense, lazy, useEffect } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import { AdminContainer } from "./admin-mainpage.styles";
+import React, { Suspense, useEffect } from "react";
+import { Switch, Route } from "react-router-dom";
+import { AdminContainer , Container} from "./admin-mainpage.styles";
 import ErrorBoundary from "../../components/error-boundary/error-boundary.component";
 import { fetchOrdersStart } from "../../redux/order/order.actions";
 import Spinner from "../../components/spinner/spinner.component";
@@ -16,10 +16,10 @@ import CreateProduct from "../create-product/create-product.component";
 const AdminMainPage = ({ currentUser, match, fetchOrdersStart }) => {
   useEffect(() => {
     fetchOrdersStart();
-  }, []);
+  }, [fetchOrdersStart]);
   if (currentUser.role !== "admin") return null;
   return (
-    <Fragment>
+    <Container>
       <AdminPanel match={match} />
       <AdminContainer>
         <Switch>
@@ -44,7 +44,7 @@ const AdminMainPage = ({ currentUser, match, fetchOrdersStart }) => {
           </ErrorBoundary>
         </Switch>
       </AdminContainer>
-    </Fragment>
+    </Container>
   );
 };
 

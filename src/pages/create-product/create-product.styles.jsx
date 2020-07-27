@@ -16,7 +16,8 @@ export const FormCreateProduct = styled.form`
 `;
 
 export const Container = styled.div`
-  width: 450px;
+  width: 100%;
+  max-width: 450px;
   margin: auto;
   background-color: white;
   padding: 10px;
@@ -36,15 +37,15 @@ export const TextReviewValue = styled.p`
 `;
 
 export const TextUpLoading = styled.p`
-    font-size: 16px;
-    font-weight: 600;
-    color: #3f51b5;
-    cursor: default;
-    animation: blinker 1s linear infinite;
+  font-size: 16px;
+  font-weight: 600;
+  color: #3f51b5;
+  cursor: default;
+  animation: blinker 1s linear infinite;
 
-    @keyframes blinker {
-        50% {
-          opacity: 0;
-        }
-      }
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
 `;

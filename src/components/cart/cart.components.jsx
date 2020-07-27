@@ -2,11 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { toggleShowCart } from "../../redux/cart/cart.actions";
-import { ButtonCart, ShopCart } from "./cart.styles";
+import { ButtonCart } from "./cart.styles";
 import { selectQuantity } from "../../redux/cart/cart.selectors";
 import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
+
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 const StyledBadge = withStyles((theme) => ({

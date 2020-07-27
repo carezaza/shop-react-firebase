@@ -11,7 +11,6 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Button,
   IconButton,
 } from "@material-ui/core";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
@@ -36,12 +35,15 @@ const OrderForAdmin = ({ orders }) => {
   };
   return (
     <div style={{ padding: 20 }}>
+      <h3 style={{ textAlign: "center", color: "black" }}>
+        In the progress...
+      </h3>
       <Typography variant="h5" align="center">
         Orders
       </Typography>
       <TableContainer
         component={Paper}
-        style={{ margin: "20px", width: "auto" }}
+        style={{ margin: "10px", width: "100%" }}
       >
         <Table aria-label="simple table">
           <TableHead>
@@ -107,7 +109,11 @@ const OrderForAdmin = ({ orders }) => {
                   <IconButton color="secondary" aria-label="edit-role">
                     <EditIcon />
                   </IconButton>
-                  <IconButton color="secondary" aria-label="delete-role" onClick={handleDelete}>
+                  <IconButton
+                    color="secondary"
+                    aria-label="delete-role"
+                    onClick={handleDelete}
+                  >
                     <DeleteIcon />
                   </IconButton>
                 </TableCell>
@@ -120,10 +126,7 @@ const OrderForAdmin = ({ orders }) => {
           handleClose={() => setOpenCart(false)}
           cartItems={items}
         />
-        <DialogOkCancel
-          open={del}
-          handleCancel={() => setDel(false)}
-        >
+        <DialogOkCancel open={del} handleCancel={() => setDel(false)}>
           <div>
             <h4 style={{ margin: 0 }}>Delete order</h4>
             <p style={{ margin: "10px 0" }}>

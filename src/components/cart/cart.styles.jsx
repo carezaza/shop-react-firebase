@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ShoppingCart } from "@material-ui/icons/";
 import IconButton from "@material-ui/core/IconButton";
 
 export const ButtonCart = styled(IconButton)`

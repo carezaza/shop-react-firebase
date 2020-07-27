@@ -21,9 +21,24 @@ const HomePage = ({ collections }) => {
       <CollectionsContainer>
         <Title>Clothing Shop</Title>
         <HappyTextContainer>
-          <HappyText>🚚 FreeDelivery</HappyText>
-          <HappyText>💸 SaveCost</HappyText>
-          <HappyText>🏆 HighQuality</HappyText>
+          <HappyText>
+            <span role="img" aria-label="FreeDelivery">
+              🚚
+            </span>{" "}
+            FreeDelivery
+          </HappyText>
+          <HappyText>
+            <span role="img" aria-label="SaveCost">
+              💸
+            </span>{" "}
+            SaveCost
+          </HappyText>
+          <HappyText>
+            <span role="img" aria-label="HighQuality">
+              🏆
+            </span>{" "}
+            HighQuality
+          </HappyText>
         </HappyTextContainer>
         <MenusContainer>
           {collections.map((collection) => (

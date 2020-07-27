@@ -1,14 +1,6 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/brands/brandsSVG.svg";
-
-const transitionStyle = css`
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -o-transition: all 1s ease;
-  -ms-transition: all 1s ease;
-  transition: all 1s ease;
-`;
 
 export const HeaderContainer = styled.div`
   position: fixed;

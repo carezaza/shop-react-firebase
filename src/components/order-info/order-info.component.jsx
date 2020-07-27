@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectUserOrder } from "../../redux/order/order.selectors";
@@ -11,7 +11,6 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Button,
   IconButton,
 } from "@material-ui/core";
 import { OrderInfoContainer } from "./order-info.styles";
@@ -35,7 +34,7 @@ const OrderInfo = ({ orders }) => {
       </Typography>
       <TableContainer
         component={Paper}
-        style={{ margin: "20px", width: "auto" }}
+        style={{ margin: "10px", width: "100%" }}
       >
         <Table aria-label="order table">
           {orders.length === 0 ? (

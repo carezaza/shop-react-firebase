@@ -1,10 +1,10 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import _ from "lodash";
 import { connect } from "react-redux";
 import {
   FormEditAddress,
   FormContainer,
-  InputContainer
+  InputContainer,
 } from "./edit-address-form.styles";
 
 import { TextField, Typography, Button } from "@material-ui/core/";
@@ -37,7 +37,7 @@ const EditAddressForm = ({
     houseNo: addressItem.houseNo,
     villageNo: addressItem.villageNo,
   });
-  const [changed, setChanged] = useState(false);
+
   const {
     name,
     phone,
@@ -71,13 +71,12 @@ const EditAddressForm = ({
         district: "",
       }));
     }
-    setChanged(true);
   };
 
   const handleSubmit = () => {
-    if(_.isEqual(address,addressItem)){
-        handleClose();
-        return;
+    if (_.isEqual(address, addressItem)) {
+      handleClose();
+      return;
     }
     if (
       !name ||
@@ -114,7 +113,7 @@ const EditAddressForm = ({
             <CircularProgress />
           </div>
         ) : (
-          <InputContainer> 
+          <InputContainer>
             <TextField
               label="name"
               name="name"
@@ -215,7 +214,8 @@ const EditAddressForm = ({
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  editAddressStart: (indexAndAddressAndUser) => dispatch(editAddressStart(indexAndAddressAndUser)),
+  editAddressStart: (indexAndAddressAndUser) =>
+    dispatch(editAddressStart(indexAndAddressAndUser)),
 });
 
 export default connect(null, mapDispatchToProps)(EditAddressForm);

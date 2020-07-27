@@ -14,6 +14,10 @@ export const IconBox = styled(IconButton)`
 export const GroupContainer = styled.div`
   display: flex;
   flex-direction: row !important;
+
+  @media screen and (max-width: 700px) {
+    flex-direction: column !important;
+  }
 `;
 
 export const HeaderAddress = styled.div`

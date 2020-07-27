@@ -19,7 +19,6 @@ import {
   CheckOutContainer,
   CheckOutLeft,
   CheckOutRight,
-  CheckoutButton,
 } from "./drawer-cart.styles";
 import CartItem from "../cart-item/cart-item.component";
 import { useOutsideAlerter } from "../utils.component";

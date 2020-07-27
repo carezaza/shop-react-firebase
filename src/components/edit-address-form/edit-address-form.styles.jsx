@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const FormEditAddress = styled.form`
   background-color: white;
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
   height: auto;
   position: fixed;
   top: 50%;
@@ -11,7 +12,7 @@ export const FormEditAddress = styled.form`
   flex-direction: column;
   padding: 0 20px 20px 20px;
   transform: translate(-50%, -50%);
-  overflow:auto;
+  overflow: auto;
 `;
 
 export const FormContainer = styled.div`
@@ -24,8 +25,11 @@ export const FormContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-
 export const InputContainer = styled.div`
   display: grid;
   grid-template-columns: auto auto;
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: auto;
+  }
 `;

@@ -17,18 +17,16 @@ import {
 } from "../../redux/user/user.selectors";
 import {
   Typography,
-  ListItemIcon,
   List,
   ListItem,
   ListItemText,
   IconButton,
   FormControl,
-  FormControlLabel,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import CreateIcon from "@material-ui/icons/Create";
 import AddIcon from "@material-ui/icons/Add";
-import StarIcon from "@material-ui/icons/Star";
+
 import AddAddressForm from "../add-address-form/add-address-form.component";
 import DialogOkCancel from "../dialog-ok-cancel/dialog-ok-cancel.component";
 import EditAddressForm from "../edit-address-form/edit-address-form.component";
