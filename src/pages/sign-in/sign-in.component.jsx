@@ -74,7 +74,6 @@ const SignIn = ({
             label="password"
             minLength="8"
             disabled={isPending}
-            addForgotPassword
             required
           />
           <CustomButton

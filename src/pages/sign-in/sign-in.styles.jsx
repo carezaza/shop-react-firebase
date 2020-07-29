@@ -43,10 +43,7 @@ export const SignInContainer = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  margin: 100px auto;
   padding: 0 5px;
 
   @media screen and (min-width: 350px) {

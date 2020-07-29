@@ -41,12 +41,8 @@ export const SignUpContainer = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin: auto;
   padding: 0 5px;
-  position: fixed;
-  left: 50%;
-  top: 55%;
-  transform: translate(-55%, -50%);
+  margin: 100px auto;
 
   @media screen and (min-width: 350px) {
     width: 350px;
