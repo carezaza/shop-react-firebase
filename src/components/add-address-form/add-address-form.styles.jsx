@@ -1,16 +1,18 @@
 import styled from "styled-components";
 
 export const FormAddAddress = styled.form`
-  background-color: white;
-  width: 600px;
-  height: auto;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  display: flex;
-  flex-direction: column;
-  padding: 0 20px 20px 20px;
-  transform: translate(-50%, -50%);
+background-color: white;
+width: 100%;
+max-width: 600px;
+max-height: 500px;
+position: fixed;
+top: 50%;
+left: 50%;
+display: flex;
+flex-direction: column;
+padding: 0 20px 20px 20px;
+transform: translate(-50%, -50%);
+overflow: auto;
 `;
 
 export const FormContainer = styled.div`
@@ -27,4 +29,8 @@ export const FormContainer = styled.div`
 export const InputContainer = styled.div`
   display: grid;
   grid-template-columns: auto auto;
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: auto;
+  }
 `;

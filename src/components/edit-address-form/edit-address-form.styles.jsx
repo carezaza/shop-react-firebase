@@ -4,7 +4,7 @@ export const FormEditAddress = styled.form`
   background-color: white;
   width: 100%;
   max-width: 600px;
-  height: auto;
+  max-height: 500px;
   position: fixed;
   top: 50%;
   left: 50%;
